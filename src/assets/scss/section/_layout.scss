@@ -1,0 +1,71 @@
+#header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 260px;
+    height: 100%;
+    z-index: 10000;
+    background-color: #111;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+#main {
+    max-width: 2000px;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding-left: 260px;
+    background-color: #222;
+}
+
+#footer {
+    text-align: center;
+    background-color: #333;
+    padding: 20px 20px 20px 260px;
+}
+
+#TodayCont,
+#AsiaCont,
+#EuropeCont,
+#NorthAmericaCont,
+#SouthAmericaCont,
+#AfricaCont,
+#OceaniaCont,
+#WorldWarCont {
+    padding: 40px;
+
+    h2 {
+        margin-bottom: 0.6rem;
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 960px) {
+    #header {
+        left: -261px;
+    }
+
+    #main {
+        padding-left: 0;
+        margin-top: 100px;
+    }
+
+    #TodayCont,
+    #AsiaCont,
+    #EuropeCont,
+    #NorthAmericaCont,
+    #SouthAmericaCont,
+    #AfricaCont,
+    #OceaniaCont,
+    #WorldWarCont {
+        padding: 20px;
+
+        h2 {
+            margin-bottom: 0.6rem;
+            font-size: 1.25rem;
+        }
+    }
+}
