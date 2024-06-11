@@ -69,3 +69,55 @@
         url("../../fonts/nanumSquareNeo-Black.woff") format("woff");
     font-display: swap;
 }
+
+
+//Oswald
+
+
+@font-face {
+    font-family: "Oswald";
+    font-weight: 200;
+    font-style: normal;
+    src: url("../../fonts/Oswald-ExtraLight.woff") format("woff");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Oswald";
+    font-weight: 300;
+    font-style: normal;
+    src: url("../../fonts/Oswald-Light.woff") format("woff");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Oswald";
+    font-weight: 400;
+    font-style: normal;
+    src: url("../../fonts/Oswald-Regular.woff") format("woff");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Oswald";
+    font-weight: 500;
+    font-style: normal;
+    src: url("../../fonts/Oswald-Medium.woff") format("woff");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Oswald";
+    font-weight: 600;
+    font-style: normal;
+    src: url("../../fonts/Oswald-SemiBold.woff") format("woff");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Oswald";
+    font-weight: 700;
+    font-style: normal;
+    src: url("../../fonts/Oswald-Bold.woff") format("woff");
+    font-display: swap;
+}

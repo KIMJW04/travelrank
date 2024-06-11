@@ -1,0 +1,140 @@
+.city-section {
+    width: 100%;
+    height: 120px;
+    display: flex;
+    padding: 20px;
+    justify-content: left;
+    align-items: center;
+    background-color: var(--mainColor);
+
+    img {
+        width: 80px;
+        height: 80px;
+        display: block;
+        margin-right: 10px;
+    }
+
+    h1 {
+        width: 100%;
+        font-weight: 600;
+        font-family: var(--mainfont-Oswald);
+        font-size: 3.5rem;
+    }
+}
+
+.cont {
+    width: 100%;
+    height: calc(100vh - 100px);
+    display: flex;
+    padding-left: 20px;
+    background-color: var(--mainColor);
+    position: relative;
+
+    .section_img {
+        width: 50%;
+        height: 100%;
+        background-color: #ccc;
+        position: relative;
+        z-index: 1;
+    }
+
+    .city-list {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        right: 0;
+        z-index: 2;
+        left: 40%;
+        justify-content: center;
+
+        .carousel {
+            position: relative;
+            height: 100%;
+            perspective: 500px;
+            transform-style: preserve-3d;
+
+            .cards-container {
+                height: 100%;
+                overflow: hidden;
+            }
+
+            .card-container {
+                position: absolute;
+                width: 100%;
+                height: 220px;
+                transform:
+                    translateY(calc(var(--offset) * 100%)) scale(calc(1 + var(--abs-offset) * -0.4)) translateZ(calc(var(--abs-offset) * -30rem)) translateX(0);
+                transition: all 0.3s ease-out;
+                margin-bottom: 20px; // 카드 간의 간격 조정
+                z-index: calc(100 - var(--abs-offset) * 100); // 중앙 카드를 앞에 배치
+            }
+
+            .nav {
+                color: white;
+                font-size: 2rem;
+                position: absolute;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                left: 50%;
+                z-index: 2;
+                cursor: pointer;
+                user-select: none;
+                background: unset;
+                border: unset;
+
+                &.up {
+                    top: 0;
+                    transform: translateY(-100%);
+                }
+
+                &.down {
+                    bottom: 0;
+                    transform: translateY(100%);
+                }
+            }
+        }
+
+        .city-card {
+            width: 100%;
+            height: 220px;
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            position: relative;
+            box-shadow: 0px 0px 4px 6px rgba(125, 125, 125, 0.25);
+            margin: 10px;
+            border-radius: 10px 0 0 10px;
+            background-color: var(--mainColor);
+
+            img {
+                width: 190px;
+                height: 190px;
+                display: block;
+                margin: 10px 30px 10px 10px;
+            }
+
+            .city-info {
+                h2 {
+                    font-weight: 900;
+                    font-size: 2.5rem;
+                    font-family: var(--mainfont-Oswald);
+                    margin-bottom: 5px;
+                }
+
+                p {
+                    color: var(--pointColor);
+                    font-size: 20px;
+                }
+
+                .detail_button {
+                    background-color: var(--pointColor100);
+                    color: var(--white);
+                    padding: 8px 15px;
+                    margin-top: 30px;
+                }
+            }
+        }
+    }
+}

@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import Modal from './modal';
 
 // import DatePicker from './DatePicker'; // DatePicker 컴포넌트를 불러옵니다.
 
@@ -34,12 +32,12 @@ const regions = {
     },
     "Busan": {
         "기장군": "Gijang-gun",
-        "강서구": "Gangseo-gu",
+        // "강서구": "Gangseo-gu",
         "금정구": "Geumjeong-gu",
         "남구": "Nam-gu",
         "동구": "Dong-gu",
         "동래구": "Dongnae-gu",
-        "진구": "Busanjin-gu",
+        "부산진구": "Busanjin-gu",
         "북구": "Buk-gu",
         "사상구": "Sasang-gu",
         "사하구": "Saha-gu",
@@ -47,7 +45,7 @@ const regions = {
         "수영구": "Suyeong-gu",
         "연제구": "Yeonje-gu",
         "영도구": "Yeongdo-gu",
-        "중구": "Jung-gu",
+        // "중구": "Jung-gu",
         "해운대구": "Haeundae-gu"
     },
     "Daegu": {
@@ -274,9 +272,6 @@ const TravelRankList = () => {
     const [selectedDate, setSelectedDate] = useState('');
     const [selectedRegion, setSelectedRegion] = useState('');
     const [selectedDistrict, setSelectedDistrict] = useState('');
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [latitude, setLatitude] = useState(null);
-    const [longitude, setLongitude] = useState(null);
 
     useEffect(() => {
         if (!selectedDate || !selectedRegion || !selectedDistrict) return;
@@ -308,18 +303,6 @@ const TravelRankList = () => {
 
     const handleDistrictChange = (e) => {
         setSelectedDistrict(e.target.value);
-    };
-
-    const handleItemClick = async (address) => {
-        try {
-            const response = await axios.post('http://localhost:5001/geocode', { address }); // 포트 변경
-            const { latitude, longitude } = response.data;
-            setLatitude(latitude);
-            setLongitude(longitude);
-            setIsModalOpen(true);
-        } catch (error) {
-            console.error('Error fetching coordinates:', error);
-        }
     };
 
     return (
@@ -368,7 +351,7 @@ const TravelRankList = () => {
                 <div className='list__info'>
                     <div className='list__grid'>
                         {data.map((item, index) => (
-                            <section key={index} onClick={() => handleItemClick(item.link)}>
+                            <section key={index} onClick={() => window.open(item.link, '_blank')}>
                                 <h2>{item.title}</h2>
                                 <img src={item.image_url} alt={item.title} />
                                 <p>{item.ranking}</p>
@@ -377,7 +360,6 @@ const TravelRankList = () => {
                     </div>
                 </div>
             )}
-            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} latitude={latitude} longitude={longitude} />
         </div>
     );
 };

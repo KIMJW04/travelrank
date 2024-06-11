@@ -1,6 +1,7 @@
 :root {
     --mainfont-nanum: "nanumSquareNeo";
     --mainfont-nexon: "nexonLv1";
+    --mainfont-Oswald: "Oswald";
 
     --black: #000;
     --black100: #111;
@@ -52,6 +53,10 @@
     --white300: #fff;
     --white400: #fff;
     --white500: #fff;
+
+    --mainColor: #FFFBE7;
+    --pointColor: #ADA895;
+    --pointColor100: #A57E67;
 
     // 폰트 셋팅
     font-family: var(--mainfont-nanum), var(--mainfont-nexon);
