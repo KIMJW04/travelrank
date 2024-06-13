@@ -71,8 +71,6 @@
             "계양구": "Gyeyang-gu",
             "남구": "Nam-gu",
             "남동구": "Namdong-gu",
-            "동구": "Dong-gu",
-            "부평구": "Bupyeong-gu",
             "서구": "Seo-gu",
             "연수구": "Yeonsu-gu",
             "중구": "Jung-gu"
@@ -114,13 +112,12 @@
             "세종시": "Sejong"
         }
     },
-    "경기": {
+    "경기도": {
         "region": "Gyeonggi",
         "subRegions": {
             "고양시": "Goyang-si",
             "과천시": "Gwacheon-si",
             "광명시": "Gwangmyeong-si",
-            "광주시": "Gwangju-si",
             "구리시": "Guri-si",
             "군포시": "Gunpo-si",
             "김포시": "Gimpo-si",
@@ -137,7 +134,6 @@
             "여주시": "Yeoju-si",
             "오산시": "Osan-si",
             "용인시": "Yongin-si",
-            "의왕시": "Uiwang-si",
             "의정부시": "Uijeongbu-si",
             "이천시": "Icheon-si",
             "파주시": "Paju-si",
@@ -150,7 +146,7 @@
             "연천군": "Yeoncheon-gun"
         }
     },
-    "강원": {
+    "강원도": {
         "region": "Gangwon",
         "subRegions": {
             "강릉시": "Gangneung-si",
@@ -160,7 +156,6 @@
             "원주시": "Wonju-si",
             "춘천시": "Chuncheon-si",
             "태백시": "Taebaek-si",
-            "고성군": "Goseong-gun",
             "양구군": "Yanggu-gun",
             "양양군": "Yangyang-gun",
             "영월군": "Yeongwol-gun",
@@ -173,7 +168,7 @@
             "횡성군": "Hoengseong-gun"
         }
     },
-    "충북": {
+    "충청북도": {
         "region": "Chungcheongbuk",
         "subRegions": {
             "제천시": "Jecheon-si",
@@ -189,10 +184,10 @@
             "진천군": "Jincheon-gun"
         }
     },
-    "충남": {
+    "충청남도": {
         "region": "Chungcheongnam",
         "subRegions": {
-            "계룡시": "Gyeryong-si",
+
             "공주시": "Gongju-si",
             "논산시": "Nonsan-si",
             "당진시": "Dangjin-si",
@@ -209,17 +204,14 @@
             "홍성군": "Hongseong-gun"
         }
     },
-    "전북": {
+    "전라북도": {
         "region": "Jeollabuk",
         "subRegions": {
             "군산시": "Gunsan-si",
             "김제시": "Gimje-si",
             "남원시": "Namwon-si",
             "익산시": "Iksan-si",
-            "전주시": "Jeonju-si",
             "정읍시": "Jeongeup-si",
-            "고창군": "Gochang-gun",
-            "무주군": "Muju-gun",
             "부안군": "Buan-gun",
             "순창군": "Sunchang-gun",
             "완주군": "Wanju-gun",
@@ -228,7 +220,7 @@
             "진안군": "Jinan-gun"
         }
     },
-    "전남": {
+    "전라남도": {
         "region": "Jeollanam",
         "subRegions": {
             "광양시": "Gwangyang-si",
@@ -255,10 +247,9 @@
             "화순군": "Hwasun-gun"
         }
     },
-    "경북": {
+    "경상북도": {
         "region": "Gyeongsangbuk",
         "subRegions": {
-            "경산시": "Gyeongsan-si",
             "경주시": "Gyeongju-si",
             "구미시": "Gumi-si",
             "김천시": "Gimcheon-si",
@@ -269,8 +260,6 @@
             "영천시": "Yeongcheon-si",
             "포항시": "Pohang-si",
             "고령군": "Goryeong-gun",
-            "군위군": "Gunwi-gun",
-            "봉화군": "Bonghwa-gun",
             "성주군": "Seongju-gun",
             "영덕군": "Yeongdeok-gun",
             "영양군": "Yeongyang-gun",
@@ -283,7 +272,7 @@
             "칠곡군": "Chilgok-gun"
         }
     },
-    "경남": {
+    "경상남도": {
         "region": "Gyeongsangnam",
         "subRegions": {
             "거제시": "Geoje-si",
@@ -295,7 +284,6 @@
             "창원시": "Changwon-si",
             "통영시": "Tongyeong-si",
             "거창군": "Geochang-gun",
-            "고성군": "Goseong-gun",
             "남해군": "Namhae-gun",
             "산청군": "Sancheong-gun",
             "의령군": "Uiryeong-gun",
@@ -306,7 +294,7 @@
             "합천군": "Hapcheon-gun"
         }
     },
-    "제주": {
+    "제주도": {
         "region": "Jeju",
         "subRegions": {
             "제주시": "Jeju-si"

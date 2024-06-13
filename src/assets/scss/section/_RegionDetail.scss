@@ -5,15 +5,32 @@
     font-family: 'Arial', sans-serif;
     background-color: #F5F5DC; // 연한 베이지 색 배경
 
-    h1 {
-        font-size: 2em;
-        margin-bottom: 20px;
+    .RegionDetail_header {
+        display: flex;
+        align-items: center;
+        padding-bottom: 20px;
+
+        img {
+            width: 80px;
+            height: 80px;
+            display: block;
+        }
+
+        h1 {
+            width: 100%;
+            font-weight: 600;
+            font-family: var(--mainfont-Oswald);
+            font-size: 3.5rem;
+            margin-left: 20px;
+        }
     }
 
     .controls {
-        margin-bottom: 20px;
         display: flex;
         gap: 10px;
+        justify-content: flex-end;
+        margin-right: 20px;
+        margin-top: 40px;
 
         select,
         input[type="date"] {
@@ -21,6 +38,7 @@
             font-size: 1em;
             border: 1px solid #ccc;
             border-radius: 4px;
+            width: 170px;
         }
     }
 
@@ -31,64 +49,119 @@
     .slider {
         position: relative;
         padding: 20px;
-        margin-top: 20px;
+        display: flex;
+        gap: 10px;
+        overflow: hidden;
+        cursor: grab;
 
-        .slick-list {
-            margin-left: -10px;
-            /* 슬라이더 간격의 절반만큼 좌측 마진을 줍니다 */
-            margin-right: -10px;
-            /* 슬라이더 간격의 절반만큼 우측 마진을 줍니다 */
+        &.grabbing {
+            cursor: grabbing;
         }
 
-        .slick-slide {
-            padding: 0 10px;
-            /* 슬라이더 간격의 절반만큼 좌우 패딩을 줍니다 */
-        }
+        .card {
+            flex: 1 0 calc(20% - 10px);  // 카드의 크기를 일정하게 유지
+            min-height: 700px;
+            background-color: var(--mainColor);
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-align: center;
+            box-shadow: 0px 0px 6px 4px rgba(125, 125, 125, 0.25);
+            position: relative;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
 
-        .slick-prev,
-        .slick-next {
-            z-index: 10;
-            position: absolute;
-            top: 50%;
-            transform: translate(0, -50%);
-            width: 2.4rem;
-            height: 5rem;
-            background-color: #A57E67;
-            border: none;
-            font-size: 2em;
-            color: #333;
-            cursor: pointer;
-
-            &.slick-prev {
-                left: -50px;
+            img {
+                width: 100%;
+                height: 350px;  // 고정된 높이 설정
+                object-fit: cover;  // 이미지를 컨테이너에 맞춤
+                border-radius: 4px 4px 0 0;  // 상단 모서리만 둥글게
             }
 
-            &.slick-next {
-                right: -50px;
+            h2 {
+                font-size: 1.5em;
+                margin: 20px 0 0px;
+                font-weight: 900;
+            }
+
+            h3 {
+                color: #bbbbbb;
+                font-size: 16px;
+                margin-bottom: 20px;
+            }
+
+            p {
+                width: 80%;
+                margin: 8px 0;
+                color: #333;
+                text-align: left;
+                display: flex;
+                gap: 10px;
+                font-size: 18px;
+                // align-items: center;
+
+                &:nth-child(4){
+                    height: 50px;
+                }
+
+                img {
+                    width: 20px;
+                    height: 20px;
+                    object-fit: contain;  // 이미지 비율 유지
+                }
+            }
+
+            .detail_button {
+                padding: 10px 20px;
+                background-color: var(--pointColor100);
+                color: var(--white);
+                font-weight: 600;
+                cursor: pointer;
+                position: absolute;
+                bottom: 20px;
+                left: 50%;
+                transform: translate(-50%);
+
+                &:hover {
+                    color: var(--pointColor100);
+                    border: 1px solid var(--pointColor100);
+                    background-color: var(--mainColor);
+                    box-shadow: inset 0px 0px 0px 2px rgba(125, 125, 125, 1);
+                }
             }
         }
     }
+}
 
-    .card {
-        background-color: #ffffff;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        text-align: center;
+.slider-container {
+    position: relative;
 
-        img {
+    .prev-button, .next-button {
+        width: 80px;
+        height: 80px;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg {
             width: 100%;
-            height: auto;
-            border-radius: 4px;
+            height: 100%;
+            color: #A57E67;
         }
+    }
 
-        h2 {
-            font-size: 1.5em;
-            margin: 10px 0;
-        }
+    .prev-button {
+        left: 10px;
+    }
 
-        p {
-            margin: 5px 0;
-            color: #333;
-        }
+    .next-button {
+        right: 10px;
     }
 }

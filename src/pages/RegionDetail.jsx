@@ -1,12 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useParams, Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import { TiChevronLeftOutline, TiChevronRightOutline } from 'react-icons/ti';
 import regionList from "../assets/json/RegionList.json";
-import { NextArrow, PrevArrow } from "../components/CustomArrows";
-import Loading from "../components/Loading"; // Assuming Loading component is available
+import Loading from "../components/Loading";  // 로딩 컴포넌트 임포트
+
+import RegionDetail_icon01 from '../assets/img/icon/RegionDetail_icon01.png'
+import RegionDetail_icon02 from '../assets/img/icon/RegionDetail_icon02.png'
+import map_icon from '../assets/img/icon/map.svg'
+import blog_icon from '../assets/img/icon/blog.svg'
+import visitor_icon from '../assets/img/icon/Visitor.svg'
 
 const RegionDetail = () => {
     const { regionId } = useParams();
@@ -19,16 +22,15 @@ const RegionDetail = () => {
     });
     const [data, setData] = useState([]);
     const [error, setError] = useState("");
+    const [isLoading, setIsLoading] = useState(false);  // 로딩 상태 추가
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [isLoading, setIsLoading] = useState(true);
     const sliderRef = useRef(null);
+
+    const SCROLL_SENSITIVITY = 50; // 스크롤 강도 조절 값
 
     useEffect(() => {
         if (regionId) {
             const [regionKorean, subRegionKorean] = regionId.split("-");
-            console.log("Initial region (Korean):", regionKorean);
-            console.log("Initial subRegion (Korean):", subRegionKorean);
-
             if (regionList[regionKorean]) {
                 setSelectedRegion(regionKorean);
                 if (regionList[regionKorean].subRegions[subRegionKorean]) {
@@ -44,21 +46,15 @@ const RegionDetail = () => {
         if (selectedRegion && selectedSubRegion) {
             const regionEnglish = regionList[selectedRegion]?.region;
             const subRegionEnglish = regionList[selectedRegion]?.subRegions[selectedSubRegion];
-            console.log("Selected region:", selectedRegion, "->", regionEnglish);
-            console.log("Selected subRegion:", selectedSubRegion, "->", subRegionEnglish);
             if (regionEnglish && subRegionEnglish) {
-                setIsLoading(true);
-                setTimeout(() => {
-                    fetchData(regionEnglish, subRegionEnglish, date);
-                }, 1000); // Ensure loading shows for at least 1 second
+                fetchData(regionEnglish, subRegionEnglish, date);
             }
         }
     }, [selectedRegion, selectedSubRegion, date]);
 
     const fetchData = async (region, subRegion, date) => {
+        setIsLoading(true);  // 데이터 요청 전 로딩 시작
         const url = `https://raw.githubusercontent.com/KIMJW04/travel-list-chart/main/travelrank_list/${date}/${region}/chart_travel_${subRegion}-${date}.json`;
-
-        console.log(`Fetching data from URL: ${url}`);
 
         try {
             const response = await axios.get(url);
@@ -67,7 +63,7 @@ const RegionDetail = () => {
         } catch (err) {
             setError("Failed to fetch data");
         } finally {
-            setIsLoading(false);
+            setTimeout(() => setIsLoading(false), 1000);  // 최소 1초 로딩
         }
     };
 
@@ -90,55 +86,46 @@ const RegionDetail = () => {
         setDate(e.target.value);
     };
 
-    const handleWheel = (e) => {
-        if (e.deltaY < 0) {
-            sliderRef.current.slickPrev();
-        } else {
-            sliderRef.current.slickNext();
+    const handlePrev = () => {
+        if (currentIndex > 0) {
+            setCurrentIndex(currentIndex - 1);
         }
     };
 
-    const settings = {
-        dots: true,
-        infinite: false,
-        speed: 500,
-        slidesToShow: 5,
-        slidesToScroll: 1,
-        beforeChange: (current, next) => setCurrentIndex(next),
-        nextArrow: currentIndex < data.length - 5 ? <NextArrow /> : null,
-        prevArrow: currentIndex > 0 ? <PrevArrow /> : null,
-        responsive: [
-            {
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 1,
-                    infinite: false,
-                    dots: true,
-                },
-            },
-            {
-                breakpoint: 600,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 1,
-                    infinite: false,
-                },
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    infinite: false,
-                },
-            },
-        ],
+    const handleNext = () => {
+        if (currentIndex < data.length - 5) {
+            setCurrentIndex(currentIndex + 1);
+        }
     };
 
+    const handleWheel = (event) => {
+        if (event.deltaY < 0) {
+            handlePrev();
+        } else {
+            handleNext();
+        }
+    };
+
+    useEffect(() => {
+        const slider = sliderRef.current;
+        if (slider) {
+            slider.addEventListener('wheel', handleWheel);
+        }
+
+        return () => {
+            if (slider) {
+                slider.removeEventListener('wheel', handleWheel);
+            }
+        };
+    }, [currentIndex]);
+
     return (
-        <div className="region-detail" onWheel={handleWheel}>
-            <h1>Region Detail</h1>
+        <div className="region-detail">
+            <div className="RegionDetail_header">
+                <img src={RegionDetail_icon01} alt="icon1" />
+                <img src={RegionDetail_icon02} alt="icon2" />
+                <h1>something enjoyably to play</h1>
+            </div>
             <div className="controls">
                 <select value={selectedRegion} onChange={handleRegionChange}>
                     <option value="" disabled>
@@ -163,35 +150,48 @@ const RegionDetail = () => {
                 </select>
                 <input type="date" value={date} onChange={handleDateChange} />
             </div>
-            {isLoading ? (
-                <Loading /> // Ensure Loading component is shown for at least 1 second
-            ) : error ? (
-                <p className="error">{error}</p>
-            ) : data.length > 0 ? (
-                <Slider ref={sliderRef} {...settings} className="slider">
-                    {data.map((item, index) => (
-                        <div key={index} className="card">
-                            <img src={item.image_url} alt={item.title} />
-                            <h2>{item.title}</h2>
-                            <p>
-                                <strong>Category:</strong> {item.title_cate}
-                            </p>
-                            <p>
-                                <strong>Address:</strong> {item.addresses}
-                            </p>
-                            <p>
-                                <strong>Blog Reviews:</strong> {item.blog_review}
-                            </p>
-                            <p>
-                                <strong>Visitor Reviews:</strong> {item.human_review}
-                            </p>
-                            <Link to={`/detail?addresses=${item.addresses}&link=${item.link}`}>View Details</Link>
-                        </div>
-                    ))}
-                </Slider>
-            ) : (
-                <p>Select a region and sub-region to load data</p>
+            {isLoading && (
+                <div className="loading__wrap">
+                    <Loading />
+                </div>
             )}
+            {!isLoading && error && <p className="error">{error}</p>}
+            {!isLoading && data.length > 0 && (
+                <div className="slider-container">
+                    <div className="slider" ref={sliderRef}>
+                        {data.slice(currentIndex, currentIndex + 5).map((item, index) => (
+                            <div key={index} className="card">
+                                <img src={item.image_url} alt={item.title} />
+                                <h2>{item.title}</h2>
+                                <h3>{item.title_cate}</h3>
+                                <p>
+                                    <img src={map_icon} alt="이미지1" />{item.addresses}
+                                </p>
+                                <p>
+                                    <img src={blog_icon} alt="이미지2" /> {item.blog_review}
+                                </p>
+                                {item.human_review && (
+                                    <p>
+                                        <img src={visitor_icon} alt="이미지3" /> {item.human_review}
+                                    </p>
+                                )}
+                                <Link to={`/detail?addresses=${item.addresses}&link=${item.link}`} className="detail_button">상세보기</Link>
+                            </div>
+                        ))}
+                    </div>
+                    {currentIndex > 0 && (
+                        <button className="prev-button" onClick={handlePrev}>
+                            <TiChevronLeftOutline />
+                        </button>
+                    )}
+                    {currentIndex < data.length - 5 && (
+                        <button className="next-button" onClick={handleNext}>
+                            <TiChevronRightOutline />
+                        </button>
+                    )}
+                </div>
+            )}
+            {!isLoading && data.length === 0 && <p>Select a region and sub-region to load data</p>}
         </div>
     );
 };
