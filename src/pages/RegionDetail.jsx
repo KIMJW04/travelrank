@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import regionList from "../assets/json/RegionList.json";
 import { NextArrow, PrevArrow } from "../components/CustomArrows";
-import Loading from "../components/Loading";  // 로딩 컴포넌트 임포트
+import Loading from "../components/Loading"; // Assuming Loading component is available
 
 const RegionDetail = () => {
     const { regionId } = useParams();
@@ -19,8 +19,8 @@ const RegionDetail = () => {
     });
     const [data, setData] = useState([]);
     const [error, setError] = useState("");
-    const [isLoading, setIsLoading] = useState(false);  // 로딩 상태 추가
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [isLoading, setIsLoading] = useState(true);
     const sliderRef = useRef(null);
 
     useEffect(() => {
@@ -47,13 +47,15 @@ const RegionDetail = () => {
             console.log("Selected region:", selectedRegion, "->", regionEnglish);
             console.log("Selected subRegion:", selectedSubRegion, "->", subRegionEnglish);
             if (regionEnglish && subRegionEnglish) {
-                fetchData(regionEnglish, subRegionEnglish, date);
+                setIsLoading(true);
+                setTimeout(() => {
+                    fetchData(regionEnglish, subRegionEnglish, date);
+                }, 1000); // Ensure loading shows for at least 1 second
             }
         }
     }, [selectedRegion, selectedSubRegion, date]);
 
     const fetchData = async (region, subRegion, date) => {
-        setIsLoading(true);  // 데이터 요청 전 로딩 시작
         const url = `https://raw.githubusercontent.com/KIMJW04/travel-list-chart/main/travelrank_list/${date}/${region}/chart_travel_${subRegion}-${date}.json`;
 
         console.log(`Fetching data from URL: ${url}`);
@@ -65,7 +67,7 @@ const RegionDetail = () => {
         } catch (err) {
             setError("Failed to fetch data");
         } finally {
-            setTimeout(() => setIsLoading(false), 1000);  // 최소 1초 로딩
+            setIsLoading(false);
         }
     };
 
@@ -162,7 +164,7 @@ const RegionDetail = () => {
                 <input type="date" value={date} onChange={handleDateChange} />
             </div>
             {isLoading ? (
-                <Loading />
+                <Loading /> // Ensure Loading component is shown for at least 1 second
             ) : error ? (
                 <p className="error">{error}</p>
             ) : data.length > 0 ? (
@@ -183,6 +185,7 @@ const RegionDetail = () => {
                             <p>
                                 <strong>Visitor Reviews:</strong> {item.human_review}
                             </p>
+                            <Link to={`/detail?addresses=${item.addresses}&link=${item.link}`}>View Details</Link>
                         </div>
                     ))}
                 </Slider>
