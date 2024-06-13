@@ -1,0 +1,94 @@
+.region-detail {
+    overflow: hidden;
+    height: 100vh;
+    padding: 10px;
+    font-family: 'Arial', sans-serif;
+    background-color: #F5F5DC; // 연한 베이지 색 배경
+
+    h1 {
+        font-size: 2em;
+        margin-bottom: 20px;
+    }
+
+    .controls {
+        margin-bottom: 20px;
+        display: flex;
+        gap: 10px;
+
+        select,
+        input[type="date"] {
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    }
+
+    .error {
+        color: red;
+    }
+
+    .slider {
+        position: relative;
+        padding: 20px;
+        margin-top: 20px;
+
+        .slick-list {
+            margin-left: -10px;
+            /* 슬라이더 간격의 절반만큼 좌측 마진을 줍니다 */
+            margin-right: -10px;
+            /* 슬라이더 간격의 절반만큼 우측 마진을 줍니다 */
+        }
+
+        .slick-slide {
+            padding: 0 10px;
+            /* 슬라이더 간격의 절반만큼 좌우 패딩을 줍니다 */
+        }
+
+        .slick-prev,
+        .slick-next {
+            z-index: 10;
+            position: absolute;
+            top: 50%;
+            transform: translate(0, -50%);
+            width: 2.4rem;
+            height: 5rem;
+            background-color: #A57E67;
+            border: none;
+            font-size: 2em;
+            color: #333;
+            cursor: pointer;
+
+            &.slick-prev {
+                left: -50px;
+            }
+
+            &.slick-next {
+                right: -50px;
+            }
+        }
+    }
+
+    .card {
+        background-color: #ffffff;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        text-align: center;
+
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+
+        p {
+            margin: 5px 0;
+            color: #333;
+        }
+    }
+}
