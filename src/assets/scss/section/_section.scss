@@ -1,11 +1,11 @@
 .city-section {
+    background-color: #F5F5DC;
     width: 100%;
     height: 120px;
     display: flex;
     padding: 20px;
     justify-content: left;
     align-items: center;
-    background-color: var(--mainColor);
 
     img {
         width: 80px;
@@ -27,7 +27,7 @@
     height: calc(100vh - 100px);
     display: flex;
     padding-left: 20px;
-    background-color: var(--mainColor);
+    background-color: #F5F5DC;
     position: relative;
     padding-bottom: 50px;
 
@@ -38,6 +38,7 @@
         z-index: 1;
         margin-bottom: 100px;
         overflow: hidden;
+
         img {
             width: 70%;
             height: 100%;
@@ -94,7 +95,8 @@
             }
 
             .card-container.center-card {
-                filter: none; /* 중앙 카드는 흑백 처리 제거 */
+                filter: none;
+                /* 중앙 카드는 흑백 처리 제거 */
             }
 
             .nav {
@@ -146,6 +148,7 @@
                 transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out, filter 0.5s ease-in-out;
                 // filter: grayscale(100%);
             }
+
             .city-info {
                 h2 {
                     font-weight: 900;
@@ -170,5 +173,3 @@
         }
     }
 }
-
-

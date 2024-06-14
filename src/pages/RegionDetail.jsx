@@ -1,15 +1,15 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Link, useParams } from "react-router-dom";
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import { TiChevronLeftOutline, TiChevronRightOutline } from 'react-icons/ti';
 import regionList from "../assets/json/RegionList.json";
-import Loading from "../components/Loading";  // 로딩 컴포넌트 임포트
+import Loading from "../components/Loading";
 
-import RegionDetail_icon01 from '../assets/img/icon/RegionDetail_icon01.png'
-import RegionDetail_icon02 from '../assets/img/icon/RegionDetail_icon02.png'
-import map_icon from '../assets/img/icon/map.svg'
-import blog_icon from '../assets/img/icon/blog.svg'
-import visitor_icon from '../assets/img/icon/Visitor.svg'
+import RegionDetail_icon01 from '../assets/img/icon/RegionDetail_icon01.png';
+import RegionDetail_icon02 from '../assets/img/icon/RegionDetail_icon02.png';
+import map_icon from '../assets/img/icon/map.svg';
+import blog_icon from '../assets/img/icon/blog.svg';
+import visitor_icon from '../assets/img/icon/Visitor.svg';
 
 const RegionDetail = () => {
     const { regionId } = useParams();
@@ -22,11 +22,10 @@ const RegionDetail = () => {
     });
     const [data, setData] = useState([]);
     const [error, setError] = useState("");
-    const [isLoading, setIsLoading] = useState(false);  // 로딩 상태 추가
+    const [isLoading, setIsLoading] = useState(false);
     const [currentIndex, setCurrentIndex] = useState(0);
     const sliderRef = useRef(null);
 
-    // 시작 날짜를 2024-06-13로 설정
     const getMinDate = () => {
         return "2024-06-13";
     };
@@ -62,7 +61,7 @@ const RegionDetail = () => {
     }, [selectedRegion, selectedSubRegion, date]);
 
     const fetchData = async (region, subRegion, date) => {
-        setIsLoading(true);  // 데이터 요청 전 로딩 시작
+        setIsLoading(true);
         const url = `https://raw.githubusercontent.com/KIMJW04/travel-list-chart/main/travelrank_list/${date}/${region}/chart_travel_${subRegion}-${date}.json`;
 
         try {
@@ -72,7 +71,7 @@ const RegionDetail = () => {
         } catch (err) {
             setError("Failed to fetch data");
         } finally {
-            setTimeout(() => setIsLoading(false), 1000);  // 최소 1초 로딩
+            setTimeout(() => setIsLoading(false), 1000);
         }
     };
 
@@ -95,25 +94,25 @@ const RegionDetail = () => {
         setDate(e.target.value);
     };
 
-    const handlePrev = () => {
+    const handlePrev = useCallback(() => {
         if (currentIndex > 0) {
             setCurrentIndex(currentIndex - 1);
         }
-    };
+    }, [currentIndex]);
 
-    const handleNext = () => {
+    const handleNext = useCallback(() => {
         if (currentIndex < data.length - 5) {
             setCurrentIndex(currentIndex + 1);
         }
-    };
+    }, [currentIndex, data.length]);
 
-    const handleWheel = (event) => {
+    const handleWheel = useCallback((event) => {
         if (event.deltaY < 0) {
             handlePrev();
         } else {
             handleNext();
         }
-    };
+    }, [handlePrev, handleNext]);
 
     useEffect(() => {
         const slider = sliderRef.current;
@@ -126,7 +125,7 @@ const RegionDetail = () => {
                 slider.removeEventListener('wheel', handleWheel);
             }
         };
-    }, [currentIndex]);
+    }, [handleWheel]);
 
     return (
         <div className="region-detail">

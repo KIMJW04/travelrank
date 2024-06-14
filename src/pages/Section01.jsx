@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TiChevronLeftOutline, TiChevronRightOutline } from 'react-icons/ti';
 import cities from '../data/cities';
@@ -24,7 +24,7 @@ const Carousel = ({ children, activeIndex }) => {
     const childrenArray = React.Children.toArray(children);
     const carouselRef = useRef(null);
 
-    const updateIndex = (newIndex) => {
+    const updateIndex = useCallback((newIndex) => {
         if (newIndex < 0) {
             setActive(count - 1 + MAX_VISIBILITY);
         } else if (newIndex >= count + MAX_VISIBILITY) {
@@ -32,7 +32,7 @@ const Carousel = ({ children, activeIndex }) => {
         } else {
             setActive(newIndex);
         }
-    };
+    }, [count]);
 
     useEffect(() => {
         if (active === count + MAX_VISIBILITY) {
@@ -69,7 +69,7 @@ const Carousel = ({ children, activeIndex }) => {
                 carousel.removeEventListener('wheel', handleWheel);
             }
         };
-    }, [active]);
+    }, [active, updateIndex]);
 
     useEffect(() => {
         if (activeIndex) {
@@ -131,7 +131,7 @@ const Section01 = () => {
             ...img,
             visible: index === currentIndex
         })));
-    }, [currentIndex, images]);
+    }, [currentIndex]);
 
     const handleDetailClick = (cityName) => {
         const translatedCityName = cityTranslations[cityName];
