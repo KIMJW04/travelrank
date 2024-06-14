@@ -1,53 +1,33 @@
 /*global naver*/
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import axios from "axios";
 
 const DetailPage = () => {
     const [searchParams] = useSearchParams();
-    const addresses = searchParams.get("addresses");
     const link = searchParams.get("link");
-    const [coordinates, setCoordinates] = useState({ longitude: null, latitude: null });
-    const [error, setError] = useState("");
+    const x = searchParams.get("x");
+    const y = searchParams.get("y");
 
     useEffect(() => {
-        const fetchCoordinates = async () => {
-            if (addresses) {
-                const encodedAddresses = encodeURIComponent(addresses);
-                const url = `http://localhost:5001/geocode?query=${encodedAddresses}`;
-                try {
-                    const response = await axios.get(url);
-                    if (response.data.addresses && response.data.addresses.length > 0) {
-                        const { x, y } = response.data.addresses[0];
-                        setCoordinates({ longitude: x, latitude: y });
-                        console.log(coordinates.latitude, coordinates.longitude);
-                    } else {
-                        setError("No coordinates found for the given address");
-                    }
-                } catch (error) {
-                    setError(error.message);
-                }
-            }
-        };
-
-        fetchCoordinates();
-    }, [addresses]);
-
-    useEffect(() => {
-        if (coordinates.longitude && coordinates.latitude) {
+        if (x && y) {
             const script = document.createElement("script");
             script.src = `https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.REACT_APP_CLIENT_ID}&submodules=geocoder`;
             script.async = true;
             script.onload = () => {
                 const mapOptions = {
-                    center: new naver.maps.LatLng(coordinates.latitude, coordinates.longitude),
+                    center: new naver.maps.LatLng(y, x),
                     zoom: 17
                 };
                 const map = new naver.maps.Map('map', mapOptions);
+
+                const marker = new naver.maps.Marker({
+                    position: new naver.maps.LatLng(y, x),
+                    map: map
+                });
             };
             document.head.appendChild(script);
         }
-    }, [coordinates]);
+    }, [x, y]);
 
     return (
         <div className="DetailPage__wrap">

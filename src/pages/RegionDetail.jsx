@@ -28,6 +28,17 @@ const RegionDetail = () => {
 
     const SCROLL_SENSITIVITY = 50; // 스크롤 강도 조절 값
 
+    // 시작 날짜를 2024-06-13로 설정
+    const getMinDate = () => {
+        return "2024-06-13";
+    };
+
+    const getMaxDate = () => {
+        const yesterday = new Date();
+        yesterday.setDate(yesterday.getDate() - 1);
+        return yesterday.toISOString().split("T")[0];
+    };
+
     useEffect(() => {
         if (regionId) {
             const [regionKorean, subRegionKorean] = regionId.split("-");
@@ -148,7 +159,13 @@ const RegionDetail = () => {
                             </option>
                         ))}
                 </select>
-                <input type="date" value={date} onChange={handleDateChange} />
+                <input
+                    type="date"
+                    value={date}
+                    onChange={handleDateChange}
+                    min={getMinDate()}
+                    max={getMaxDate()}
+                />
             </div>
             {isLoading && (
                 <div className="loading__wrap">
@@ -175,7 +192,7 @@ const RegionDetail = () => {
                                         <img src={visitor_icon} alt="이미지3" /> {item.human_review}
                                     </p>
                                 )}
-                                <Link to={`/detail?addresses=${item.addresses}&link=${item.link}`} className="detail_button">상세보기</Link>
+                                <Link to={`/detail?x=${item.x}&y=${item.y}&link=${item.link}`} className="detail_button">상세보기</Link>
                             </div>
                         ))}
                     </div>

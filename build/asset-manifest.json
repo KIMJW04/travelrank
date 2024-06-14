@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.c8fbafbd.css",
-    "main.js": "/static/js/main.81a8c692.js",
+    "main.css": "/static/css/main.72129584.css",
+    "main.js": "/static/js/main.2831293c.js",
     "static/media/Seoul.jpg": "/static/media/Seoul.9d4a182c780eadf4188c.jpg",
     "static/media/Daegu.jpg": "/static/media/Daegu.fca55a0d83496e09b6db.jpg",
     "static/media/Busan.jpg": "/static/media/Busan.3b02f3cd2c8f8b129efd.jpg",
@@ -47,11 +47,11 @@
     "index.html": "/index.html",
     "static/media/Visitor.svg": "/static/media/Visitor.01204e54f4bc973ef157bf7b6bc158fc.svg",
     "static/media/map.svg": "/static/media/map.9fa6433d3b2acd2777eed30127407fb9.svg",
-    "main.c8fbafbd.css.map": "/static/css/main.c8fbafbd.css.map",
-    "main.81a8c692.js.map": "/static/js/main.81a8c692.js.map"
+    "main.72129584.css.map": "/static/css/main.72129584.css.map",
+    "main.2831293c.js.map": "/static/js/main.2831293c.js.map"
   },
   "entrypoints": [
-    "static/css/main.c8fbafbd.css",
-    "static/js/main.81a8c692.js"
+    "static/css/main.72129584.css",
+    "static/js/main.2831293c.js"
   ]
 }
