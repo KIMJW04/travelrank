@@ -20,6 +20,7 @@ const DetailPage = () => {
                     if (response.data.addresses && response.data.addresses.length > 0) {
                         const { x, y } = response.data.addresses[0];
                         setCoordinates({ longitude: x, latitude: y });
+                        console.log(coordinates.latitude, coordinates.longitude);
                     } else {
                         setError("No coordinates found for the given address");
                     }
