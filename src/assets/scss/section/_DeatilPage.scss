@@ -1,14 +1,16 @@
-.DetailPage__wrap{
+.DetailPage__wrap {
     width: 100vw;
     height: 100vh;
-    .iframe{
+
+    .iframe {
         position: fixed;
         width: 400px;
         height: 100vh;
     }
-    .map{
+
+    .map {
         margin-left: 400px;
-        width: 70vw;
+        width: calc(100% - 400px);
         height: 100vh;
     }
 }
