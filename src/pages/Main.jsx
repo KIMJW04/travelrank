@@ -13,17 +13,19 @@ const Main = () => {
     return (
         <div className="main-container">
             <img src={mainImage} alt="Travel" className="main-image" />
-            <div className="main-content">
-                <h1>TRAVEL LIST</h1>
-                <p>
-                    Find the best travel destinations and restaurants in Korea with ease!<br />
-                    Discover our recommended spots to make your trip special.
-                </p>
+            <div className="main__inner">
+                <div className="main-content">
+                    <h1>TRAVEL LIST</h1>
+                    <p>
+                        Find the best travel destinations and restaurants in Korea with ease!<br />
+                        Discover our recommended spots to make your trip special.
+                    </p>
+                </div>
+                <button className="start-button" onClick={handleStartClick}>
+                    <p>start</p>
+                    <span className='arrow_icon'></span>
+                </button>
             </div>
-            <button className="start-button" onClick={handleStartClick}>
-                <p>start</p>
-                <span className='arrow_icon'></span>
-            </button>
 
             <div className="box01">
                 <img src={mainImage02} alt="travel" className="mainimg02" />

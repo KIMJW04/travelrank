@@ -32,71 +32,81 @@
     }
 }
 
-.main-content {
-    width: 1180px;
-    height: 380px;
-    background-color: #FFFBE7;
+.main__inner {
+    height: 520px;
     position: absolute;
-    top: 250px;
+    width: 100%;
+    top: 57%;
+    transform: translate(0, -50%);
     right: 0;
-    z-index: 1;
-    border-radius: 10px 0 0 10px;
-    box-shadow: 2px 2px 6px 4px rgba(125, 125, 125, 0.25);
+    z-index: 1000;
 
-    h1 {
-        font-size: 8em;
-        color: #333037;
-        padding-top: 54px;
-        padding-left: 80px;
-        font-family: 'Oswald';
-        font-weight: 700;
-    }
+    .main-content {
+        width: 75%;
+        height: 380px;
+        background-color: #FFFBE7;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 1;
+        border-radius: 10px 0 0 10px;
+        box-shadow: 2px 2px 6px 4px rgba(125, 125, 125, 0.25);
 
-    p {
-        font-size: 1.5em;
-        color: #ADA895;
-        padding-left: 80px;
-        font-family: var(--mainfont-nanum);
-    }
+        h1 {
+            font-size: 8em;
+            color: #333037;
+            padding-top: 54px;
+            padding-left: 80px;
+            font-family: 'Oswald';
+            font-weight: 700;
+        }
 
-}
-
-.start-button {
-    width: 830px;
-    height: 90px;
-    background-color: #A57E67;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1.875em;
-    cursor: pointer;
-    border-radius: 8px 0 0 8px;
-    position: absolute;
-    bottom: 120px;
-    right: 10px;
-    justify-content: right;
-    align-items: center;
-    display: flex;
-
-
-    p {
-        margin-right: 20px;
-        z-index: 2;
-        text-align: right;
-    }
-
-    .arrow_icon {
-        width: 48px;
-        height: 48px;
-        display: block;
-        margin-right: 40px;
-        background-image: url(../../img/arrow01.png);
+        p {
+            font-size: 1.5em;
+            color: #ADA895;
+            padding-left: 80px;
+            font-family: var(--mainfont-nanum);
+        }
 
     }
 
+    .start-button {
+        width: 55%;
+        height: 90px;
+        background-color: #A57E67;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 1.875em;
+        cursor: pointer;
+        border-radius: 8px 0 0 8px;
+        position: absolute;
+        bottom: 0;
+        right: 0px;
+        justify-content: right;
+        align-items: center;
+        display: flex;
 
 
-    &:hover {
-        background-color: #8a6348;
+        p {
+            margin-right: 20px;
+            z-index: 2;
+            text-align: right;
+        }
+
+        .arrow_icon {
+            width: 48px;
+            height: 48px;
+            display: block;
+            margin-right: 40px;
+            background-image: url(../../img/arrow01.png);
+
+        }
+
+
+
+        &:hover {
+            background-color: #8a6348;
+        }
     }
 }
