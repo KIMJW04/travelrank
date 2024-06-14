@@ -1,3 +1,4 @@
+/*global naver*/
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import axios from "axios";
@@ -13,13 +14,9 @@ const DetailPage = () => {
         const fetchCoordinates = async () => {
             if (addresses) {
                 const encodedAddresses = encodeURIComponent(addresses);
-                const url = `/api/geocode?query=${encodedAddresses}`;
-
-                console.log(`Request URL: ${url}`); // 요청 URL을 콘솔에 출력합니다.
-
+                const url = `http://localhost:5001/geocode?query=${encodedAddresses}`;
                 try {
                     const response = await axios.get(url);
-                    console.log('Response:', response);
                     if (response.data.addresses && response.data.addresses.length > 0) {
                         const { x, y } = response.data.addresses[0];
                         setCoordinates({ longitude: x, latitude: y });
@@ -35,6 +32,22 @@ const DetailPage = () => {
         fetchCoordinates();
     }, [addresses]);
 
+    useEffect(() => {
+        if (coordinates.longitude && coordinates.latitude) {
+            const script = document.createElement("script");
+            script.src = `https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.REACT_APP_CLIENT_ID}&submodules=geocoder`;
+            script.async = true;
+            script.onload = () => {
+                const mapOptions = {
+                    center: new naver.maps.LatLng(coordinates.latitude, coordinates.longitude),
+                    zoom: 17
+                };
+                const map = new naver.maps.Map('map', mapOptions);
+            };
+            document.head.appendChild(script);
+        }
+    }, [coordinates]);
+
     return (
         <div className="DetailPage__wrap">
             <div className="iframe">
@@ -46,15 +59,8 @@ const DetailPage = () => {
                     title="Naver Map"
                 ></iframe>
             </div>
-            <div className="map">
-                <h2>{addresses}</h2>
-                <p>Place ID: {link}</p>
-                {coordinates.longitude && coordinates.latitude ? (
-                    <p>Coordinates: {coordinates.latitude}, {coordinates.longitude}</p>
-                ) : (
-                    <p>Loading coordinates...</p>
-                )}
-                {error && <p style={{ color: 'red' }}>{error}</p>}
+            <div className="map" id="map">
+                {/* 지도 영역 */}
             </div>
         </div>
     );

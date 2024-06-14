@@ -3,7 +3,7 @@
     height: 100vh;
     padding: 10px;
     font-family: 'Arial', sans-serif;
-    background-color: #F5F5DC; // 연한 베이지 색 배경
+    background-color: #F5F5DC;
 
     .RegionDetail_header {
         display: flex;
@@ -14,6 +14,9 @@
             width: 80px;
             height: 80px;
             display: block;
+            &:nth-child(1) {
+                margin-left: 20px;
+            }
         }
 
         h1 {
@@ -40,6 +43,16 @@
             border-radius: 4px;
             width: 170px;
         }
+
+        .combined-select {
+            width: 350px;  /* 두 개의 셀렉트 박스를 합친 크기 */
+        }
+
+        .date-icon {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
     }
 
     .error {
@@ -59,7 +72,7 @@
         }
 
         .card {
-            flex: 1 0 calc(20% - 10px);  // 카드의 크기를 일정하게 유지
+            flex: 1 0 calc(20% - 10px);
             min-height: 700px;
             background-color: var(--mainColor);
             border: 1px solid #ddd;
@@ -73,9 +86,9 @@
 
             img {
                 width: 100%;
-                height: 350px;  // 고정된 높이 설정
-                object-fit: cover;  // 이미지를 컨테이너에 맞춤
-                border-radius: 4px 4px 0 0;  // 상단 모서리만 둥글게
+                height: 350px;
+                object-fit: cover;
+                border-radius: 4px 4px 0 0;
             }
 
             h2 {
@@ -98,16 +111,15 @@
                 display: flex;
                 gap: 10px;
                 font-size: 18px;
-                // align-items: center;
 
-                &:nth-child(4){
+                &:nth-child(4) {
                     height: 50px;
                 }
 
                 img {
                     width: 20px;
                     height: 20px;
-                    object-fit: contain;  // 이미지 비율 유지
+                    object-fit: contain;
                 }
             }
 
@@ -163,5 +175,53 @@
 
     .next-button {
         right: 10px;
+    }
+}
+
+/* 반응형 스타일 추가 */
+@media (max-width: 1300px) {
+    .slider .card {
+        flex: 1 0 calc(25% - 10px);
+    }
+}
+
+@media (max-width: 1000px) {
+    .slider .card {
+        flex: 1 0 calc(33.33% - 10px);
+    }
+}
+
+@media (max-width: 600px) {
+    .RegionDetail_header h1 {
+        display: none;
+    }
+    .controls .combined-select {
+        display: block;
+    }
+    .controls select:not(.combined-select),
+    .controls input[type="date"] {
+        display: none;
+    }
+    .slider .card {
+        flex: 1 0 100%;
+    }
+}
+
+@media (max-width: 390px) {
+    .RegionDetail_header img {
+        display: none;
+        
+    }
+    .RegionDetail_header {
+        justify-content: center;
+    }
+    .controls {
+        margin-top: 0;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+    .slider {
+        padding-top: 60px;
     }
 }
