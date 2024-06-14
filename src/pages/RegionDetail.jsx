@@ -26,8 +26,6 @@ const RegionDetail = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const sliderRef = useRef(null);
 
-    const SCROLL_SENSITIVITY = 50; // 스크롤 강도 조절 값
-
     // 시작 날짜를 2024-06-13로 설정
     const getMinDate = () => {
         return "2024-06-13";

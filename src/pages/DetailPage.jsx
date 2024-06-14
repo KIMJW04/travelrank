@@ -20,7 +20,7 @@ const DetailPage = () => {
                 };
                 const map = new naver.maps.Map('map', mapOptions);
 
-                const marker = new naver.maps.Marker({
+                new naver.maps.Marker({
                     position: new naver.maps.LatLng(y, x),
                     map: map
                 });

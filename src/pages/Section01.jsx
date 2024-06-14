@@ -131,7 +131,7 @@ const Section01 = () => {
             ...img,
             visible: index === currentIndex
         })));
-    }, [currentIndex]);
+    }, [currentIndex, images]);
 
     const handleDetailClick = (cityName) => {
         const translatedCityName = cityTranslations[cityName];
