@@ -127,7 +127,7 @@ const Section01 = () => {
     const [images, setImages] = useState(cities.map(city => ({ ...city, visible: true })));
 
     useEffect(() => {
-        setImages(images.map((img, index) => ({
+        setImages(images => images.map((img, index) => ({
             ...img,
             visible: index === currentIndex
         })));
