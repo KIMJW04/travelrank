@@ -11,102 +11,302 @@
 .main-image {
     width: 58%;
     height: 100%;
-    flex-shrink: 0; // main-image가 줄어들지 않도록 설정
+    flex-shrink: 0; /* main-image가 줄어들지 않도록 설정 */
 }
 
 .box01 {
-    width: 230px;
-    height: 230px;
+    width: 10%;
+    height: 20%;
     background-color: #BBBA8A;
     display: flex;
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 1%;
+    right: 1%;
 
     .mainimg02 {
-        width: 100px;
-        height: 100px;
+        width: 50%;
+        height: 50%;
         text-align: center;
     }
 }
 
 .main__inner {
-    height: 520px;
+    height: 65%;
     position: absolute;
     width: 100%;
-    top: 57%;
+    top: 50%;
     transform: translate(0, -50%);
     right: 0;
     z-index: 1000;
 
     .main-content {
-        width: 75%;
-        height: 380px;
+        width: 60%;
+        height: auto; /* Adjust height to auto to fit content */
         background-color: #FFFBE7;
         position: absolute;
-        top: 0;
+        top: 50px;
         right: 0;
         z-index: 1;
         border-radius: 10px 0 0 10px;
         box-shadow: 2px 2px 6px 4px rgba(125, 125, 125, 0.25);
 
         h1 {
-            font-size: 8em;
+            font-size: 6vw;
             color: #333037;
-            padding-top: 54px;
-            padding-left: 80px;
+            padding-top: 4%;
+            padding-left: 5%;
             font-family: 'Oswald';
             font-weight: 700;
         }
 
         p {
-            font-size: 1.5em;
+            width: 80%;
+            font-size: 1vw;
             color: #ADA895;
-            padding-left: 80px;
+            padding-left: 5%;
             font-family: var(--mainfont-nanum);
+            padding-bottom: 4%;
         }
-
     }
 
     .start-button {
-        width: 55%;
-        height: 90px;
+        width: 45%;
+        height: 14%;
         background-color: #A57E67;
         color: white;
         border: none;
-        padding: 10px 20px;
-        font-size: 1.875em;
+        padding: 1% 2%;
+        font-size: 1.875vw;
         cursor: pointer;
         border-radius: 8px 0 0 8px;
         position: absolute;
-        bottom: 0;
-        right: 0px;
+        top: 100%;
+        right: 0;
         justify-content: right;
         align-items: center;
         display: flex;
 
-
         p {
-            margin-right: 20px;
+            margin-right: 2%;
             z-index: 2;
             text-align: right;
         }
 
         .arrow_icon {
-            width: 48px;
-            height: 48px;
+            width: 6%;
+            height: 100%;
             display: block;
-            margin-right: 40px;
-            background-image: url(../../img/arrow01.png);
-
+            margin-right: 3%;
+            background-image: url(../../img//arrow01.png);
         }
-
-
 
         &:hover {
             background-color: #8a6348;
         }
     }
 }
+
+@media screen and (max-width: 1440px) {
+    /** 1440px 이하 */
+    .main-content {
+        width: 60%;
+        height: auto; /* Adjust height to auto to fit content */
+        h1 {
+            font-size: 4em;
+        }
+
+        p {
+            font-size: 0.7em;
+            width: 600px;
+        }
+    }
+
+    .start-button {
+        font-size: 1.5em;
+
+        .arrow_icon {
+            width: 6%;
+            height: 100%;
+        }
+    }
+}
+
+@media  (max-width: 1280px) {
+    /** 1280px 이하 */
+    .main-content {
+        width: auto;
+        height: auto; /* Adjust height to auto to fit content */
+        background-color: transparent !important; /* Remove background color */
+        box-shadow: none !important; /* Remove shadow */
+        top: 10px;
+        right: 10px;
+        padding: 0;
+        position: relative !important;
+
+        h1, p {
+            color: #000 !important; /* Change text color to white */
+            // padding-left: 0 !important;
+            // padding-top: 0 !important;
+            // padding: auto !important;
+            position: absolute !important;
+            left: 500px !important;
+            bottom: 50px !important;
+        }
+
+        h1 {
+            width: 500px;
+            font-size: 2em; /* Adjust font size */
+            position: absolute !important;
+            left: 30px !important;
+            bottom: 80px !important;
+        }
+
+        p {
+            font-size: 1em; /* Adjust font size */
+            position: absolute !important;
+            left: 30px !important;
+            bottom: 0px !important;
+        }
+    }
+
+    .main-image {
+        width: 100%;
+        object-fit: contain;
+    }
+
+    .box01 {
+        display: none; /* Hide the box01 for smaller screens */
+    }
+
+    .start-button {
+        width: 14% !important; /* Adjust width for smaller screens */
+        font-size: 2em !important;
+        right: 100px !important;
+        border-radius: 20px !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+
+        .arrow_icon{
+            display: none !important;
+        }
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    /** 1024px 이하 */
+    .main-content {
+        width: 100%;
+        position: relative !important;
+
+        h1{
+            position: absolute !important;
+            left: 10px !important;
+            top: -170px !important;
+        }
+
+        p{
+            position: absolute !important;
+            left: 10px !important;
+        }
+    }
+
+    .main-image {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+
+    .start-button {
+        width: 80%;
+        height: auto !important;
+        font-size: 1.5em;
+    }
+
+    .main__inner {
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    /* 768px 이하 */
+    .main-content {
+        width: 90%; /* Adjust width for smaller screens */
+        height: auto; /* Adjust height to auto to fit content */
+        position: absolute !important;
+        top: 170px !important;
+        left: 0 !important;
+
+        p{
+            padding-bottom: 12% !important;
+            font-size: 0.6rem !important;
+        }
+    }
+
+    .main-image {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        position: relative !important;
+    }
+
+    .box01 {
+        display: none; /* Hide the box01 for smaller screens */
+    }
+
+    .start-button {
+        width: 90%;
+        font-size: 1.2em;
+        position: absolute !important;
+        top: 530px !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .main__inner {
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    /* 500px 이하 */
+    .main-content {
+        width: 90%; /* Adjust width for smaller screens */
+        height: auto; /* Adjust height to auto to fit content */
+        position: absolute !important;
+        top: 290px !important;
+        left: 10px !important;
+
+        p{
+            padding-bottom: 18% !important;
+            font-size: 0.6rem !important;
+        }
+    }
+
+    .main-image {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        position: relative !important;
+    }
+
+    .box01 {
+        display: none; /* Hide the box01 for smallest screens */
+    }
+
+    .start-button {
+        width: 100%;
+        font-size: 0.7em !important;
+        position: absolute !important;
+        right: 40px !important;
+        top: 460px !important;
+    }
+
+    .main__inner {
+        align-items: center;
+    }
+}
+

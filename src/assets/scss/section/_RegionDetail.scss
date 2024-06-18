@@ -26,6 +26,10 @@
             font-size: 3.5rem;
             margin-left: 20px;
         }
+
+        @media (max-width: 700px) {
+            display: none;
+        }
     }
 
     .controls {
@@ -45,14 +49,33 @@
         }
 
         .combined-select {
-            width: 350px;
-            /* 두 개의 셀렉트 박스를 합친 크기 */
+            display: none;
         }
 
         .date-icon {
             width: 30px;
             height: 30px;
             cursor: pointer;
+            display: none;
+        }
+
+        @media (max-width: 500px) {
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+
+            select {
+                display: none;
+            }
+
+            .combined-select {
+                display: block;
+                width: 80%;
+            }
+
+            .date-icon {
+                display: block;
+            }
         }
     }
 
@@ -73,6 +96,7 @@
         }
 
         .card {
+            position: relative;
             flex: 1 0 calc(20% - 10px);
             min-height: 700px;
             background-color: var(--mainColor);
@@ -80,30 +104,57 @@
             border-radius: 4px;
             text-align: center;
             box-shadow: 0px 0px 6px 4px rgba(125, 125, 125, 0.25);
-            position: relative;
             align-items: center;
             display: flex;
             flex-direction: column;
-
+        
+            .rank-box {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                width: 30px;
+                height: 30px;
+                background-color: rgba(0, 0, 0, 0.5);
+                color: white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1rem;
+                font-weight: bold;
+                border-radius: 4px;
+        
+                &.gold {
+                    background-color: red;
+                }
+        
+                &.silver {
+                    background-color: orange;
+                }
+        
+                &.bronze {
+                    background-color: #ffd035;
+                }
+            }
+        
             img {
                 width: 100%;
                 height: 350px;
                 object-fit: cover;
                 border-radius: 4px 4px 0 0;
             }
-
+        
             h2 {
                 font-size: 1.5em;
                 margin: 20px 0 0px;
                 font-weight: 900;
             }
-
+        
             h3 {
                 color: #bbbbbb;
                 font-size: 16px;
                 margin-bottom: 20px;
             }
-
+        
             p {
                 width: 80%;
                 margin: 8px 0;
@@ -112,18 +163,18 @@
                 display: flex;
                 gap: 10px;
                 font-size: 18px;
-
+        
                 &:nth-child(4) {
                     height: 50px;
                 }
-
+        
                 img {
                     width: 20px;
                     height: 20px;
                     object-fit: contain;
                 }
             }
-
+        
             .detail_button {
                 padding: 10px 20px;
                 background-color: var(--pointColor100);
@@ -134,7 +185,7 @@
                 bottom: 20px;
                 left: 50%;
                 transform: translate(-50%);
-
+        
                 &:hover {
                     color: var(--pointColor100);
                     border: 1px solid var(--pointColor100);
@@ -143,93 +194,117 @@
                 }
             }
         }
-    }
-}
+        
 
-.slider-container {
-    position: relative;
+        @media (max-width: 1920px) {
+            .card {
+                flex: 1 0 calc(20% - 10px);
+            }
+        }
 
-    .prev-button,
-    .next-button {
-        width: 80px;
-        height: 80px;
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 10;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        @media (max-width: 1440px) {
+            .card {
+                flex: 1 0 calc(25% - 10px);
+            }
+        }
 
-        svg {
-            width: 100%;
-            height: 100%;
-            color: #A57E67;
+        @media (max-width: 1050px) {
+            .card {
+                flex: 1 0 calc(33.33% - 10px);
+            }
+        }
+
+        @media (max-width: 700px) {
+            .card {
+                flex: 1 0 calc(50% - 10px);
+            }
+        }
+
+        @media (max-width: 500px) {
+            .card {
+                flex: 1 0 100%;
+            }
         }
     }
 
-    .prev-button {
-        left: 10px;
+    .slider-container {
+        position: relative;
+
+        .prev-button,
+        .next-button {
+            width: 80px;
+            height: 80px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            svg {
+                width: 100%;
+                height: 100%;
+                color: #A57E67;
+            }
+        }
+
+        .prev-button {
+            left: 10px;
+        }
+
+        .next-button {
+            right: 10px;
+        }
     }
 
-    .next-button {
-        right: 10px;
+    // Responsive typography
+    @media (max-width: 1920px) {
+        .RegionDetail_header h1 {
+            font-size: 3.5rem;
+        }
+    }
+
+    @media (max-width: 1440px) {
+        .RegionDetail_header h1 {
+            font-size: 3rem;
+        }
+    }
+
+    @media (max-width: 1050px) {
+        .RegionDetail_header h1 {
+            font-size: 2.5rem;
+        }
+    }
+
+    @media (max-width: 700px) {
+        .RegionDetail_header h1 {
+            font-size: 2rem;
+        }
+    }
+
+    @media (max-width: 500px) {
+        .RegionDetail_header h1 {
+            font-size: 1.5rem;
+        }
     }
 }
 
-/* 반응형 스타일 추가 */
-@media (max-width: 1300px) {
-    .slider .card {
-        flex: 1 0 calc(25% - 10px);
-    }
-}
+// Back link style
+.back-link {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 1.6em;
+    color: #000;
+    text-decoration: none;
+    padding: 20px;
+    font-weight: 800;
 
-@media (max-width: 1000px) {
-    .slider .card {
-        flex: 1 0 calc(33.33% - 10px);
-    }
-}
-
-@media (max-width: 600px) {
-    .RegionDetail_header h1 {
-        display: none;
-    }
-
-    .controls .combined-select {
-        display: block;
-    }
-
-    .controls select:not(.combined-select),
-    .controls input[type="date"] {
-        display: none;
-    }
-
-    .slider .card {
-        flex: 1 0 100%;
-    }
-}
-
-@media (max-width: 390px) {
-    .RegionDetail_header img {
-        display: none;
-
-    }
-
-    .RegionDetail_header {
-        justify-content: center;
-    }
-
-    .controls {
-        margin-top: 0;
-        flex-direction: column;
-        align-items: center;
-        gap: 5px;
-    }
-
-    .slider {
-        padding-top: 60px;
+    &:hover{
+        color: var(--pointColor100);
     }
 }
