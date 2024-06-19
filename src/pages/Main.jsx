@@ -17,8 +17,7 @@ const Main = () => {
                 <div className="main-content">
                     <h1>TRAVEL LIST</h1>
                     <p>
-                        Find the best travel destinations and restaurants in Korea with ease!<br />
-                        Discover our recommended spots to make your trip special.
+                    본 포트폴리오에 사용된 모든 정보는 네이버 '가볼만한곳'에서 가져온 것입니다. 이 사진들은 포트폴리오 용도로만 사용되었으며, 상업적 목적이 없음을 알려드립니다. 해당 사진들의 저작권은 원저작자에게 있으며, 본 사이트는 이에 대한 어떠한 책임도 지지 않습니다.
                     </p>
                 </div>
                 <button className="start-button" onClick={handleStartClick}>
