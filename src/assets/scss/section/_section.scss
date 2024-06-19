@@ -6,6 +6,26 @@
     padding: 20px;
     justify-content: left;
     align-items: center;
+    position: relative;
+
+    .back-button {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        font-size: 1.4em;
+        color: #000;
+        text-decoration: none;
+        // padding: 18px;
+        font-weight: 800;
+        background: none;
+        cursor: pointer;
+        padding-top: 30px;
+        padding-right: 6px;
+
+        &:hover{
+            color: var(--pointColor100);
+        }
+    }
 
     img {
         width: 80px;
@@ -173,3 +193,88 @@
         }
     }
 }
+
+@media (max-width: 1440px) {
+    .section_img {
+        display: none !important;
+    }
+    .city-list {
+        left: 0 !important;
+        width: 100% !important;
+        position: relative !important;
+    }
+    .city-card {
+        width: 100% !important;
+        margin: 10px 0 !important;
+        border-radius: 0 !important;
+    }
+}
+
+@media (max-width:768px) {
+    .city-info{
+
+        h2{
+            font-size: 2rem !important;
+        }
+
+        p{
+            width: 90px !important;
+            font-size: 1rem !important;
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    // .city-card {
+    //     position: relative;        width: 100% !important;
+    //     margin: 10px 0 !important;
+    //     border-radius: 0 !important;
+    //     overflow: hidden;
+    // }
+
+    .city-card img {
+        width: 100% !important;
+        height: auto !important;
+        display: block !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
+        position: relative !important;
+    }
+
+    .city-info {
+        position: absolute !important;
+        bottom: -5px;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.5); /* 반투명 배경을 사용하여 텍스트 가독성 향상 */
+        color: #fff;
+        padding: 10px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .city-info h2 {
+        font-size: 1.5rem !important;
+        margin: 0 0 5px 0;
+        color: #fff !important; 
+    }
+
+    .city-info p {
+        width: 200px !important;
+        font-size: 1rem !important;
+        margin: 0 0 5px 0;
+        color: #fff !important;
+        font-weight: 500 !important;
+    }
+
+    .city-info .detail_button {
+        font-size: 1rem !important;
+        padding: 5px 10px;
+        background-color: var(--pointColor100);
+        color: var(--white);
+        cursor: pointer;
+    }
+}
+

@@ -129,6 +129,7 @@ const RegionDetail = () => {
 
     return (
         <div className="region-detail">
+            <Link to="/section01" className="back-link">◀︎ 이전으로</Link>
             <div className="RegionDetail_header">
                 <img src={RegionDetail_icon01} alt="icon1" />
                 <img src={RegionDetail_icon02} alt="icon2" />
@@ -173,8 +174,21 @@ const RegionDetail = () => {
             {!isLoading && data.length > 0 && (
                 <div className="slider-container">
                     <div className="slider" ref={sliderRef}>
-                        {data.slice(currentIndex, currentIndex + 5).map((item, index) => (
+                    {data.slice(currentIndex, currentIndex + 5).map((item, index) => {
+                        const rank = index + 1 + currentIndex;
+                        let rankClass = "";
+
+                        if (rank === 1) {
+                            rankClass = "gold";
+                        } else if (rank === 2) {
+                            rankClass = "silver";
+                        } else if (rank === 3) {
+                            rankClass = "bronze";
+                        }
+
+                        return (
                             <div key={index} className="card">
+                                <div className={`rank-box ${rankClass}`}>{rank}</div>
                                 <img src={item.image_url} alt={item.title} />
                                 <h2>{item.title}</h2>
                                 <h3>{item.title_cate}</h3>
@@ -182,16 +196,19 @@ const RegionDetail = () => {
                                     <img src={map_icon} alt="이미지1" />{item.addresses}
                                 </p>
                                 <p>
-                                    <img src={blog_icon} alt="이미지2" /> {item.blog_review}
+                                    <img src={blog_icon} alt="이미지2" /> 볼로그 리뷰 {item.blog_review}
                                 </p>
                                 {item.human_review && (
                                     <p>
-                                        <img src={visitor_icon} alt="이미지3" /> {item.human_review}
+                                        <img src={visitor_icon} alt="이미지3" /> 방문자 리뷰 {item.human_review}
                                     </p>
                                 )}
                                 <Link to={`/detail?x=${item.x}&y=${item.y}&link=${item.link}`} className="detail_button">상세보기</Link>
                             </div>
-                        ))}
+                        );
+                    })}
+
+
                     </div>
                     {currentIndex > 0 && (
                         <button className="prev-button" onClick={handlePrev}>
