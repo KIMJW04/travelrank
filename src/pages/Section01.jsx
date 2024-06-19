@@ -138,11 +138,16 @@ const Section01 = () => {
         navigate(`/RegionDetail/${translatedCityName}`);
     };
 
+    const handleBackClick = () => {
+        navigate('/'); // 메인 페이지로 이동
+    };
+
     return (
         <>
             <div className="city-section">
                 <img src={cityicon} alt='시티아이콘'></img>
                 <h1>City</h1>
+                <button className="back-button" onClick={handleBackClick}>◀︎ 이전으로</button>
             </div>
             <div className='cont'>
                 <div className='section_img'>
