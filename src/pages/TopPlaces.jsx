@@ -14,26 +14,26 @@ const TopPlaces = () => {
         try {
             const topPlacesData = {};
 
-            for (const [regionKorean, regionData] of Object.entries(regionList)) {
+            const regionPromises = Object.entries(regionList).map(async ([regionKorean, regionData]) => {
                 const regionEnglish = regionData.region;
-                topPlacesData[regionKorean] = [];
-
-                for (const subRegionKorean of Object.keys(regionData.subRegions)) {
+                const subRegionPromises = Object.keys(regionData.subRegions).map(async (subRegionKorean) => {
                     const subRegionEnglish = regionData.subRegions[subRegionKorean];
                     const url = `https://raw.githubusercontent.com/KIMJW04/travel-list-chart/main/travelrank_list/${date}/${regionEnglish}/chart_travel_${subRegionEnglish}-${date}.json`;
 
                     try {
                         const response = await axios.get(url);
-                        topPlacesData[regionKorean].push({
-                            subRegion: subRegionKorean,
-                            places: response.data.slice(0, 3),
-                        });
+                        return { subRegion: subRegionKorean, places: response.data.slice(0, 3) };
                     } catch (error) {
                         console.error(`Failed to fetch data for ${subRegionKorean}: ${error.message}`);
+                        return { subRegion: subRegionKorean, places: [] };
                     }
-                }
-            }
+                });
 
+                const subRegions = await Promise.all(subRegionPromises);
+                topPlacesData[regionKorean] = subRegions;
+            });
+
+            await Promise.all(regionPromises);
             setTopPlaces(topPlacesData);
         } catch (error) {
             console.error("Failed to fetch top places:", error);
