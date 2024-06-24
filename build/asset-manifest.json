@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.1b09006b.css",
-    "main.js": "/static/js/main.795a10a2.js",
+    "main.js": "/static/js/main.8c824971.js",
     "static/media/Seoul.jpg": "/static/media/Seoul.9d4a182c780eadf4188c.jpg",
     "static/media/Daegu.jpg": "/static/media/Daegu.fca55a0d83496e09b6db.jpg",
     "static/media/Busan.jpg": "/static/media/Busan.3b02f3cd2c8f8b129efd.jpg",
@@ -48,10 +48,10 @@
     "index.html": "/index.html",
     "static/media/map.svg": "/static/media/map.9fa6433d3b2acd2777eed30127407fb9.svg",
     "main.1b09006b.css.map": "/static/css/main.1b09006b.css.map",
-    "main.795a10a2.js.map": "/static/js/main.795a10a2.js.map"
+    "main.8c824971.js.map": "/static/js/main.8c824971.js.map"
   },
   "entrypoints": [
     "static/css/main.1b09006b.css",
-    "static/js/main.795a10a2.js"
+    "static/js/main.8c824971.js"
   ]
 }
