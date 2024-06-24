@@ -98,7 +98,7 @@ const Carousel = ({ children, activeIndex }) => {
                             "--offset": (i - active) / 3,
                             "--direction": Math.sign(i - active),
                             "--abs-offset": Math.abs(i - active) / 3,
-                            "pointer-events": active === i ? "auto" : "none",
+                            pointerEvents: active === i ? "auto" : "none",
                             opacity: Math.abs(i - active) >= MAX_VISIBILITY ? "0" : "1",
                             display: Math.abs(i - active) > MAX_VISIBILITY ? "none" : "block",
                             transition: transitionEnabled ? "all 0.3s ease-out" : "none",
