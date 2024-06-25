@@ -40,8 +40,8 @@
     - 다양한 지역의 추천 여행지 소개
 
 <img src="/img/img02.png">
+<img src="/img/img03.png">
 <img src="/img/img04.png">
-<img src="/img/img05.png">
 
 
 ## 08. 프로젝트 인원
