@@ -101,12 +101,12 @@
             min-height: 700px;
             background-color: var(--mainColor);
             border: 1px solid #ddd;
-            border-radius: 4px;
+            border-radius: 10px;
             text-align: center;
-            box-shadow: 0px 0px 6px 4px rgba(125, 125, 125, 0.25);
             align-items: center;
             display: flex;
             flex-direction: column;
+            border: 2px solid var(--pointColor100);
         
             .rank-box {
                 position: absolute;
